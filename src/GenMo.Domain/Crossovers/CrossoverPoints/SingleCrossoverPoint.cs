@@ -14,7 +14,9 @@ namespace GenMo.Domain.Crossovers.CrossoverPoints
 
         private SingleCrossoverPoint(int chromosomeLength)
         {
-            PointValue = RandomUtil.Random(0, chromosomeLength);
+            PointValue = RandomUtil.Random(1, chromosomeLength - 1);
+
+            Console.WriteLine($"The Crossover Point is {PointValue}");
         }
 
         public static SingleCrossoverPoint GetCrossoverPoints(int chromosomeLength)

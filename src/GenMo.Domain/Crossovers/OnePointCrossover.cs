@@ -1,5 +1,4 @@
-﻿using GeneSharp.Domain.Common.Interfaces;
-using GenMo.Domain.Common.Interfaces.Crossovers;
+﻿using GenMo.Domain.Common.Interfaces.Crossovers;
 using GenMo.Domain.Crossovers.CrossoverPoints;
 using System;
 using System.Collections.Generic;
