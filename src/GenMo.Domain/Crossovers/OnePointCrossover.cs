@@ -1,41 +1,35 @@
 ﻿using GeneSharp.Domain.Common.Interfaces;
-using GeneSharp.Domain.Common.Interfaces.Crossovers;
-using GeneSharp.Domain.Crossovers.CrossoverPoints;
+using GenMo.Domain.Common.Interfaces.Crossovers;
+using GenMo.Domain.Crossovers.CrossoverPoints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GeneSharp.Domain.Crossovers
+namespace GenMo.Domain.Crossovers
 {
-    public class OnePointCrossover : ICrossover
+    public class OnePointCrossover : ICrossover<SingleCrossoverPoint>
     {
-        public override (IList<int>, IList<int>) Breed(IList<int> parentA, IList<int> parentB)
+        public (IList<int>, IList<int>) Breed(IList<int> parentA, IList<int> parentB)
         {
             var crossoverPoint = SingleCrossoverPoint
-                .GetCrossoverPoints(parentA.Count)
-                .PointValue;
+                .GetCrossoverPoints(parentA.Count);
 
-            return (GenerateOffspring(parentA, parentB), GenerateOffspring(parentB, parentA));
+            return (GenerateOffspring(parentA, parentB, crossoverPoint), GenerateOffspring(parentB, parentA, crossoverPoint));
         }
 
-        //public IList<int> GetOffspring(IList<int> leadingParent, IList<int> secondaryParent)
-        //{
-        //    var offspring = leadingParent.Take(FirstCrossoverPoint).ToList();
-
-        //    foreach (var gene in secondaryParent)
-        //    {
-        //        if (!offspring.Contains(gene))
-        //        {
-        //            offspring.Add(gene);
-        //        }
-        //    }
-
-        //    return offspring;
-        //}
-
-        public IList<int> GenerateOffspring(IList<int> leadingParent, IList<int> secondaryParent)
+        public IList<int> GenerateOffspring(IList<int> leadingParent, IList<int> secondaryParent, SingleCrossoverPoint crossoverPoint)
         {
-            throw new NotImplementedException();
+            var offspring = leadingParent.Take(crossoverPoint.PointValue).ToList();
+
+            foreach (var gene in secondaryParent)
+            {
+                if (!offspring.Contains(gene))
+                {
+                    offspring.Add(gene);
+                }
+            }
+
+            return offspring;
         }
     }
 }

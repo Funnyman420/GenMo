@@ -1,12 +1,12 @@
-﻿using GeneSharp.Domain.Common.Interfaces.Crossovers;
-using GeneSharp.Domain.Common.Utils;
+﻿using GenMo.Domain.Common.Interfaces.Crossovers;
+using GenMo.Domain.Common.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeneSharp.Domain.Crossovers.CrossoverPoints
+namespace GenMo.Domain.Crossovers.CrossoverPoints
 {
     public struct DoubleCrossoverPoint : ICrossoverPoint
     {

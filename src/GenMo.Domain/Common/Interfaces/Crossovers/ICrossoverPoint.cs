@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeneSharp.Domain.Common.Interfaces.Crossovers
+namespace GenMo.Domain.Common.Interfaces.Crossovers
 {
     public interface ICrossoverPoint
     {
