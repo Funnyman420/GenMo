@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace GenMo.Domain.Common.Interfaces.Crossovers
 {
-    public interface ICrossoverPoint
+    public interface ICrossoverPoint<TReturn>
     {
-        static T GetCrossoverPoints<T>(int chromosomeLength) where T : ICrossoverPoint
+        public TReturn PointValue { get; }
+
+        static TReturn GetCrossoverPoints(int chromosomeLength)
             => throw new NotImplementedException();
     }
 }

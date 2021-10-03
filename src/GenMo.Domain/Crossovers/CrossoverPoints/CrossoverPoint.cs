@@ -1,5 +1,4 @@
-﻿using GenMo.Domain.Common.Interfaces.Crossovers;
-using GenMo.Domain.Common.Utils;
+﻿using GenMo.Domain.Common.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace GenMo.Domain.Crossovers.CrossoverPoints
 {
-    public static class DoubleCrossoverPoint
+    public static class CrossoverPoint
     {
-        public static (int, int) GetCrossoverPoints(int chromosomeLength)
+        public static int GetSingle(int chromosomeLength) =>
+            RandomUtil.Random(1, chromosomeLength - 1);
+
+        public static (int, int) GetDouble(int chromosomeLength)
         {
             int valueA;
             int valueB;

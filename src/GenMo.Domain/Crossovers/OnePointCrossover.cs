@@ -6,19 +6,18 @@ using System.Linq;
 
 namespace GenMo.Domain.Crossovers
 {
-    public class OnePointCrossover : ICrossover<SingleCrossoverPoint>
+    public class OnePointCrossover : ICrossover
     {
         public (IList<int>, IList<int>) Breed(IList<int> parentA, IList<int> parentB)
         {
-            var crossoverPoint = SingleCrossoverPoint
-                .GetCrossoverPoints(parentA.Count);
+            var crossoverPoint = CrossoverPoint.GetSingle(parentA.Count);
 
             return (GenerateOffspring(parentA, parentB, crossoverPoint), GenerateOffspring(parentB, parentA, crossoverPoint));
         }
 
-        public IList<int> GenerateOffspring(IList<int> leadingParent, IList<int> secondaryParent, SingleCrossoverPoint crossoverPoint)
+        public IList<int> GenerateOffspring(IList<int> leadingParent, IList<int> secondaryParent, int crossoverPoint)
         {
-            var offspring = leadingParent.Take(crossoverPoint.PointValue).ToList();
+            var offspring = leadingParent.Take(crossoverPoint).ToList();
 
             foreach (var gene in secondaryParent)
             {

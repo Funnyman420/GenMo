@@ -8,20 +8,11 @@ using System.Threading.Tasks;
 
 namespace GenMo.Domain.Crossovers.CrossoverPoints
 {
-    public struct SingleCrossoverPoint : ICrossoverPoint
+    public static class SingleCrossoverPoint
     {
-        public int PointValue { get; private init; }
-
-        private SingleCrossoverPoint(int chromosomeLength)
+        public static int GetCrossoverPoints(int chromosomeLength)
         {
-            PointValue = RandomUtil.Random(1, chromosomeLength - 1);
-
-            Console.WriteLine($"The Crossover Point is {PointValue}");
-        }
-
-        public static SingleCrossoverPoint GetCrossoverPoints(int chromosomeLength)
-        {
-            return new SingleCrossoverPoint(chromosomeLength);
+            return RandomUtil.Random(1, chromosomeLength - 1);
         }
     }
 }
