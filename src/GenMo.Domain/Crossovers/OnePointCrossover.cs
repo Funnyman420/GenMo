@@ -8,14 +8,14 @@ namespace GenMo.Domain.Crossovers
 {
     public class OnePointCrossover : ICrossover
     {
-        public (IList<int>, IList<int>) Breed(IList<int> parentA, IList<int> parentB)
+        public static (IList<int>, IList<int>) Breed(IList<int> parentA, IList<int> parentB)
         {
-            var crossoverPoint = CrossoverPoint.GetSingle(parentA.Count);
+            var crossoverPoint = CrossoverPoints.CrossoverPoints.GetSingle(parentA.Count);
 
             return (GenerateOffspring(parentA, parentB, crossoverPoint), GenerateOffspring(parentB, parentA, crossoverPoint));
         }
 
-        public IList<int> GenerateOffspring(IList<int> leadingParent, IList<int> secondaryParent, int crossoverPoint)
+        public static IList<int> GenerateOffspring(IList<int> leadingParent, IList<int> secondaryParent, int crossoverPoint)
         {
             var offspring = leadingParent.Take(crossoverPoint).ToList();
 
