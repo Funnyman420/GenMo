@@ -8,6 +8,7 @@ namespace GenMo.Domain.Common.Interfaces.Crossovers
 {
     public interface ICrossover
     {
-        (IList<int>, IList<int>) Breed(IList<int> parentA, IList<int> parentB);
+        static (IList<int>, IList<int>) Breed(IList<int> parentA, IList<int> parentB)
+            => throw new NotImplementedException();
     }
 }
