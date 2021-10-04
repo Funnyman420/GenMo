@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,19 +9,31 @@ namespace GenMo.Domain.Common.Utils
 {
     public static class RandomUtil
     {
-        [ThreadStatic]
-        private static Random _rnd;
-
-        private static void Init()
+        public static int Next(int min, int max)
         {
-            _rnd ??= new Random();
-        }
+            if (min > max)
+            {
+                throw new ArgumentOutOfRangeException(nameof(min));
+            }
 
-        public static int Random(int min, int max)
-        {
-            Init();
+            if (min == max)
+            {
+                return min;
+            }
 
-            return _rnd.Next(min, max);
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                var data = new byte[4];
+                rng.GetBytes(data);
+
+                var generatedValue = Math.Abs(BitConverter.ToInt32(data, startIndex: 0));
+
+                var diff = max - min;
+                var mod = generatedValue % diff;
+                var normalizedNumber = min + mod;
+
+                return normalizedNumber;
+            }
         }
     }
 }
